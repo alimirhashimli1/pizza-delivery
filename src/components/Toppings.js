@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
 
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255, 255, 255)",
+    boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+    transition: {
+      duration: 0.3,
+      yoyo: 2
+    }
+  }
+};
+
 const Toppings = ({ addTopping, pizza }) => {
   let toppings = ['mushrooms', 'peppers', 'onions', 'olives', 'extra cheese', 'tomatoes'];
 
@@ -25,11 +37,13 @@ const Toppings = ({ addTopping, pizza }) => {
 
       <Link to="/order">
         <motion.button
-        whileHover={{scale:1.1,
-          textShadow: "0px 0px 8px rgb(255, 255, 255)",
-          boxShadow: "0px 0px 8px rgb(255, 255, 255)",
-          }}
-          transition={{duration:0.2}}
+        // whileHover={{scale:1.1,
+        //   textShadow: "0px 0px 8px rgb(255, 255, 255)",
+        //   boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+        //   }}
+        //   transition={{duration:0.2}}
+        variants={buttonVariants}
+        whileHover="hover"
         >
           Order
         </motion.button>
