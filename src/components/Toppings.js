@@ -2,6 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
 
+
+const containerVariants = {
+  hidden: { 
+    opacity: 0, 
+    x: '100vw',
+    transition: {
+      staggerChildren: 0.5,
+    } 
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      type: 'spring',
+      mass: 0.4,
+      damping: 8,
+      staggerChildren: 0.4,
+      when: "beforeChildren",
+    }
+  },
+};
+
 const buttonVariants = {
   hover: {
     scale: 1.1,
@@ -18,7 +40,13 @@ const Toppings = ({ addTopping, pizza }) => {
   let toppings = ['mushrooms', 'peppers', 'onions', 'olives', 'extra cheese', 'tomatoes'];
 
   return (
-    <div className="toppings container">
+    <motion.div className="toppings container"
+    
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    >
       
       <h3>Step 2: Choose Toppings</h3>
       <ul>
@@ -49,7 +77,7 @@ const Toppings = ({ addTopping, pizza }) => {
         </motion.button>
       </Link>
 
-    </div>
+    </motion.div>
   )
 }
 
