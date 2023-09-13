@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Loader from './Loader';
 
 const buttonVariants = {
   hover: {
@@ -20,7 +21,7 @@ const containerVariants = {
   },
   visible: { 
     opacity: 1, 
-    transition: { delay: 1.5, duration: 1.5 }
+    transition: { delay: 3, duration: 1.5 }
   },
   exit: {
     x: "-100vh",
@@ -29,23 +30,44 @@ const containerVariants = {
 };
 
 const Home = () => {
+  const [loadPage, setLoadPage] = useState(false);
+
+
+
+  useEffect(() => {
+    const loadTimeout = setInterval(() => {
+      setLoadPage(true)
+    } , 3000)
+
+    return () => clearInterval( loadTimeout)
+  }, [])
+
+
+
   return (
-    <motion.div className="home container"
+    <>
+    {loadPage ? (
+    <motion.div
+    className="home container"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
-      <h2>Welcome to Pizza Joint</h2>
-      <Link to="/base">
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-        >
-          Create Your Pizza
-        </motion.button>
-      </Link>
+      
+      <h2>Welcome to Pizza Joint</h2><Link to="/base">
+          <motion.button
+            variants={buttonVariants}
+            whileHover="hover"
+          >
+            Create Your Pizza
+          </motion.button>
+        </Link>
+     
     </motion.div>
+    )
+    : <Loader />}
+    </>
   )
 }
 
