@@ -136,3 +136,7 @@ li span.active::before{
   color: #444;
   font-weight: bold;
 }
+
+.logo {
+  cursor: pointer;
+}

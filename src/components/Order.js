@@ -35,13 +35,14 @@ const Order = ({ pizza, setShowModal }) => {
 
 
   useEffect(() => {
-    setTimeout(()=>{
+    const timer = setTimeout(()=>{
       setShowModal(true)
     }, 5000)
 
-    clearTimeout(() => {
-      setShowModal(false)
-    }, 5000)
+    return () => {
+      clearTimeout(timer)
+    }
+
   }, [setShowModal])
 
   const [showTitle, setShowTitle] = useState(true);

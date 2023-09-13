@@ -43,8 +43,9 @@ const Modal = ({ showModal, setShowModal }) => {
          exit="hidden"
          >
             <p>Want to make another pizz?</p>
-            <Link to="/"/>
-            <button onClick={() => setShowModal(false)}>Start Again</button>
+            <Link to="/">
+            <button >Start Again</button>
+            </Link>
          </motion.div>
         </motion.div>
       )}
